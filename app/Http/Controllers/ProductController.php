@@ -46,8 +46,7 @@ class ProductController extends Controller
 
         Product::create($request->all());
 
-        return redirect()->route('products.index')
-            ->with('success', 'Product created successfully.');
+        return "{\"msg\":\"success\"}";
     }
 
     /**
@@ -69,7 +68,9 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('products.edit', compact('product'));
+        //return view('products.edit', compact('product'));
+        return compact('product');
+        //return "{\"msg\":\"success\"}";
     }
 
     /**
@@ -88,8 +89,9 @@ class ProductController extends Controller
         ]);
         $product->update($request->all());
 
-        return redirect()->route('products.index')
-            ->with('success', 'Product updated successfully.');
+        //return redirect()->route('products.index')
+            //->with('success', 'Product updated successfully.');
+        return "{\"msg\":\"success\"}";
     }
 
     /**
@@ -102,7 +104,9 @@ class ProductController extends Controller
     {
         $product->delete();
 
-        return redirect()->route('products.index')
-            ->with('success', 'Product deleted successfully.');
+        //return redirect()->route('products.index')
+        //    ->with('success', 'Product deleted successfully.');
+
+        return "{\"msg\":\"success\"}";
     }
 }
