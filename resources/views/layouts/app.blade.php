@@ -161,6 +161,20 @@
 
        $(document).ready(function () {
 
+        
+            function getProductsTable() {
+                var url = $('#productsTable').data("url");
+                
+                $.ajax({
+                    url: url,
+                    type: "get",
+                    dataType: "html",
+                    success: function(response) {
+                        $("#productsTable").html(response);
+                    }
+                })
+            }
+
            //Add the Product 
             $("#addUser").submit(function(e) {
                 $.ajaxSetup({
@@ -182,6 +196,7 @@
                         $('#addModal').modal('hide');
                         //$('.container').html('');
                         //reloadTable();
+                        getProductsTable();
                     },
                     error: function (data) {
                         console.log('errrors');
@@ -233,6 +248,7 @@
                             //reloadTable();
                             $('#updateProduct')[0].reset();
                             $('#updateModal').modal('hide');
+                            getProductsTable();
                         },
                         error: function (data) {
                             console.log('errrors');
@@ -280,6 +296,7 @@
                             console.log(data);
                             console.log('mmnyah');
                             $('#deleteModal').modal('hide');
+                            getProductsTable();
                         //loadDataTable();
                         } else {
                             console.log(data);

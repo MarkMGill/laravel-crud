@@ -32,7 +32,7 @@
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="productsTable" data-url="{{ url('/products/data') }}">
             @foreach ($products as $product)
                 <tr>
                     <td>{{ $product->id }}</td>

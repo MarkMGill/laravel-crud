@@ -18,4 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/products/data', [ProductController::class, 'getProductsTable']);
+
 Route::resource('products', ProductController::class);

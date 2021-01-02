@@ -20,6 +20,14 @@ class ProductController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
+    public function getProductsTable()
+    {
+        $products = Product::latest()->paginate(5);
+        
+        return view('products.productsTable', compact('products'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
