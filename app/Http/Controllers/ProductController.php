@@ -12,10 +12,14 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $products = Product::latest()->paginate(5);
         
+        if($request->ajax()) {
+            return view('products.productsTable', compact('products'))
+                ->with('i', (request()->input('page', 1) - 1) * 5);
+        }
         return view('products.index', compact('products'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }

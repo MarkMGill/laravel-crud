@@ -143,37 +143,43 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     
     <script>
-       /*function reloadTable() {
-        $.ajax({
-            url: "/products/",
-            datatype: 'html',
-            beforeSend: function (f) {
-                //$('#userTable').html('Load Table ...');
-            },
-            success: function (data) {
-                //$('#userTable').html(data);
-                console.log(data);
-                $('.container').html(data);
-            }
-        })
-        }
-        reloadTable();*/
+
 
        $(document).ready(function () {
 
-        
+            // load products table
             function getProductsTable() {
-                var url = $('#productsTable').data("url");
+                var url = $('#products').data("url");
                 
                 $.ajax({
                     url: url,
                     type: "get",
                     dataType: "html",
                     success: function(response) {
-                        $("#productsTable").html(response);
+                        $("#products").html(response);
                     }
                 })
             }
+
+            $(function () {
+                $('body').on('click', '.pagination a', function (e) {
+                    e.preventDefault();
+                    //$('#load').append('<img style="position: absolute; left: 0; top: 0; z-index: 10000;" src="https://i.imgur.com/v3KWF05.gif />');
+                    var url = $(this).attr('href');
+                    console.log(url);
+                    window.history.pushState("", "", url);
+                    loadPosts(url);
+                });
+                function loadPosts(url) {
+                    $.ajax({
+                        url: url
+                    }).done(function (data) {
+                        $('#products').html(data);
+                    }).fail(function () {
+                        console.log("Failed to load data!");
+                    });
+                }
+            });
 
            //Add the Product 
             $("#addUser").submit(function(e) {

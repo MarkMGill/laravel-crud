@@ -20,7 +20,7 @@
     @endif
 
     
-
+    <section id="products">
     <table class="table table-bordered table-responsive-lg">
         <thead>
             <tr>
@@ -54,6 +54,8 @@
     </table>
 
     {!! $products->links() !!}
+    </section>
+    
 
     
 
