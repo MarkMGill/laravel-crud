@@ -150,6 +150,7 @@
             // load products table
             function getProductsTable() {
                 var url = $('#products').data("url");
+                console.log(url);
                 
                 $.ajax({
                     url: url,
@@ -166,7 +167,7 @@
                     e.preventDefault();
                     //$('#load').append('<img style="position: absolute; left: 0; top: 0; z-index: 10000;" src="https://i.imgur.com/v3KWF05.gif />');
                     var url = $(this).attr('href');
-                    console.log(url);
+                    //console.log(url);
                     window.history.pushState("", "", url);
                     loadPosts(url);
                 });
@@ -189,7 +190,7 @@
                     }
                 });
                 e.preventDefault();
-                console.log('mmm');
+                //console.log('mmm');
                 var form_action = $("#addUser").attr("action");
                 $.ajax({
                     data: $('#addUser').serialize(),
@@ -197,7 +198,7 @@
                     type: "POST",
                     dataType: 'json',
                     success: function (res) {
-                        console.log(res);
+                        //console.log(res);
                         $('#addUser')[0].reset();
                         $('#addModal').modal('hide');
                         //$('.container').html('');
@@ -220,7 +221,7 @@
                     type: "GET",
                     dataType: 'json',
                     success: function (res) {
-                        console.log(res);
+                        //console.log(res);
                         $('#updateModal').modal('show');
                         $('#updateProduct #hdnUserId').val(res.product.id);
                         $('#updateProduct #txtUpdateName').val(res.product.name);
@@ -243,7 +244,7 @@
                 e.preventDefault();
                 var form_action = $("#updateProduct").attr("action");
                 var product_id = document.querySelector("#updateProduct #hdnUserId").value;
-                console.log(form_action);
+                //console.log(form_action);
                 //console.log(inputVal);
                     $.ajax({
                         data: $('#updateProduct').serialize(),
@@ -288,10 +289,10 @@
                 $("#deleteForm").submit(function (e) {
                     e.preventDefault();
                     var form_data = $(this).serialize(); 
-                    console.log(form_data);
+                    //console.log(form_data);
                     var product_id = $('#deleteModal #hdnUserIdDelete').text();
                      
-                    console.log(product_id);
+                    //console.log(product_id);
                     $.ajax({
                         type: "POST", 
                         url: "/products/" + product_id,
@@ -299,8 +300,8 @@
                         data: form_data
                     }).done((data) => {
                         if(data.msg == 'success') {
-                            console.log(data);
-                            console.log('mmnyah');
+                            //console.log(data);
+                            //console.log('mmnyah');
                             $('#deleteModal').modal('hide');
                             getProductsTable();
                         //loadDataTable();

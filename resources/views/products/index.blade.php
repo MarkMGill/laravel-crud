@@ -20,7 +20,7 @@
     @endif
 
     
-    <section id="products">
+    <section id="products" data-url="{{ url('/products/data') }}">
     <table class="table table-bordered table-responsive-lg">
         <thead>
             <tr>
@@ -32,7 +32,7 @@
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody id="productsTable" data-url="{{ url('/products/data') }}">
+        <tbody id="productsTable">
             @foreach ($products as $product)
                 <tr>
                     <td>{{ $product->id }}</td>
